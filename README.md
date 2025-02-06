@@ -1,6 +1,6 @@
 
 
-# 🚀 Code Extractor – Get Your Code AI-Ready in Seconds!  
+# 🚀 Github Code Extractor – Get Your Code AI-Ready in Seconds!  
 
 ## 🔥 Why Do You Need This?  
 
