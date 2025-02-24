@@ -1,14 +1,17 @@
+**Quick Auto Extraction in Colab:**
 
+```python
+# Clone the Code Extractor repository
+!git clone https://github.com/Test7973/code-extractor.git
+%cd code-extractor
 
-```bash
-git clone https://github.com/Test7973/code-extractor.git
-cd code-extractor/extractors/powershell
-powershell -ExecutionPolicy Bypass -File extract.ps1 -repoUrl "https://github.com/axios/axios.git" -outputFile "axios_code.txt"
+# Run the auto extraction script for fully automated processing
+!python3 extractors/python/auto_extract.py "https://github.com/axios/axios.git" "axios_code.txt"
+
+# Download the consolidated code file
+from google.colab import files
+files.download("axios_code.txt")
 ```
-
-**Note:** Ensure you have PowerShell installed and properly configured on your system. The `-ExecutionPolicy Bypass` flag allows the script to run without execution policy restrictions, which is necessary for some environments.
-
-For more detailed instructions and alternative methods, please refer to the sections below.
 
 ---
 
@@ -16,7 +19,7 @@ For more detailed instructions and alternative methods, please refer to the sect
 
 ## 🔥 Why Do You Need This?
 
-In the era of AI-driven development, efficiently analyzing entire codebases is crucial. **Code Extractor** streamlines this process by consolidating selected code into a single, structured text file, making it ideal for AI tools like **GPT, Claude, or Gemini**.
+In the era of AI-driven development, efficiently analyzing entire codebases is crucial. **Code Extractor** streamlines this process by consolidating selected code into a single, structured text file—perfect for AI tools like **GPT, Claude, or Gemini**.
 
 **Use Cases:**
 
@@ -25,22 +28,21 @@ In the era of AI-driven development, efficiently analyzing entire codebases is c
 - 📖 **Documentation Generation:** Automatically create comprehensive documentation.
 - 🤖 **Debugging and Refactoring:** Leverage AI to identify and fix issues.
 
-Traditional methods like manual copying or reading through cloned repositories are time-consuming and cumbersome. **Code Extractor** offers a swift and user-friendly alternative.
-
 ---
 
 ## ⚡ Key Features
 
-- **Selective Extraction:** Choose specific files or directories to include.
-- **Multi-Platform Support:** Available in PowerShell, Python, Node.js, and a web-based version.
-- **AI-Friendly Output:** Generates a clean, consolidated text file suitable for AI analysis.
+- **Selective Extraction:** Only include files relevant to your analysis.
+- **Multi-Platform Support:** PowerShell, Python, Node.js, and a web version.
+- **AI-Friendly Output:** Produces a clean, consolidated text file for seamless AI ingestion.
 
 ---
 
 ## 📌 Supported Versions
 
 - 🖥️ **PowerShell:** `extractors/powershell/extract.ps1`
-- 🐍 **Python:** `extractors/python/extract.py`
+- 🐍 **Python (Manual Extraction):** `extractors/python/extract.py`
+- 🐍 **Python (Auto Repo Extractor):** `extractors/python/auto_extract.py`
 - 🌐 **JavaScript (Node.js):** `extractors/javascript/extract.js`
 - 🌎 **Web Browser:** `extractors/web/index.html` (*currently in development*)
 
@@ -50,20 +52,12 @@ Traditional methods like manual copying or reading through cloned repositories a
 
 ### 🏁 Step 1: Clone the Code Extractor Repository
 
-Begin by cloning the repository to your local machine:
-
 ```bash
 git clone https://github.com/Test7973/code-extractor.git
 cd code-extractor
 ```
 
----
-
 ### 💻 Step 2: Run Your Preferred Version
-
-Below are instructions for using different versions of Code Extractor, using the [axios/axios](https://github.com/axios/axios) repository as an example.
-
----
 
 #### **🔹 Windows (PowerShell)**
 
@@ -73,11 +67,7 @@ Open PowerShell and execute:
 .\extractors\powershell\extract.ps1 -repoUrl "https://github.com/axios/axios.git" -outputFile "axios_code.txt"
 ```
 
-*This command clones the axios repository, allows you to select files or directories, and generates a structured `axios_code.txt` file.*
-
----
-
-#### **🐧 Linux / macOS (Python)**
+#### **🐧 Linux / macOS (Python Manual Extraction)**
 
 In your terminal, run:
 
@@ -85,9 +75,18 @@ In your terminal, run:
 python3 extractors/python/extract.py "https://github.com/axios/axios.git" "axios_code.txt"
 ```
 
-*The Python script clones the axios repository, prompts for file selection, and outputs a consolidated text file.*
+#### **🐍 Python: Auto Repo Extractor**
 
----
+This new script automates the entire process: it clones (or updates) the repository, selectively extracts code files based on defined inclusion/exclusion patterns, generates a consolidated output with a detailed folder structure and summary, and cleans up the cloned repository afterward.
+
+**Usage:**
+
+```bash
+python3 extractors/python/auto_extract.py "https://github.com/axios/axios.git" "axios_code.txt"
+```
+
+*Example:*  
+Running the above command processes the axios repository, outputs the consolidated code to `axios_code.txt`, and removes the temporary clone afterward.
 
 #### **🌐 Node.js**
 
@@ -97,20 +96,18 @@ For a JavaScript-based approach:
 node extractors/javascript/extract.js "https://github.com/axios/axios.git" "axios_code.txt"
 ```
 
-*This command uses the Node.js script to extract and consolidate code from the axios repository into `axios_code.txt`.*
-
----
-
 #### **🌟 Google Colab**
 
-To use Code Extractor in Google Colab:
+You can also leverage Code Extractor in Google Colab. Both the manual and auto extraction methods are supported:
+
+**Manual Extraction in Colab:**
 
 ```python
 # Clone the Code Extractor repository
 !git clone https://github.com/Test7973/code-extractor.git
 %cd code-extractor
 
-# Use the Python extractor to process the axios repository
+# Use the Python manual extractor to process the axios repository
 !python3 extractors/python/extract.py "https://github.com/axios/axios.git" "axios_code.txt"
 
 # Download the consolidated code file
@@ -118,38 +115,51 @@ from google.colab import files
 files.download("axios_code.txt")
 ```
 
-*This Colab script processes the axios repository and provides the output file for download.*
+**Auto Extraction in Colab:**
+
+```python
+# Clone the Code Extractor repository
+!git clone https://github.com/Test7973/code-extractor.git
+%cd code-extractor
+
+# Run the auto extraction script for fully automated processing
+!python3 extractors/python/auto_extract.py "https://github.com/axios/axios.git" "axios_code.txt"
+
+# Download the consolidated code file
+from google.colab import files
+files.download("axios_code.txt")
+```
 
 ---
 
 ## 🛠️ How It Works
 
-1. **Clone the Repository:** Downloads the specified GitHub repository to your local machine.
-2. **Interactive Selection:** Prompts you to choose which files or directories to include:
-   - ✅ **yes** – Include this file
-   - ❌ **no** – Skip this file
-   - 📁 **folder** – Include all files in this folder
-   - 🚀 **skip-all** – Skip all remaining items
-3. **Generate Output:** Compiles the selected code into a single, well-formatted text file (e.g., `axios_code.txt`).
-4. **Clean Up:** Removes temporary files to maintain a tidy workspace.
+1. **Clone or Update the Repository:**  
+   Downloads the target repository to your local machine (or pulls the latest changes if it already exists).
+
+2. **Selective File Extraction:**  
+   Scans the repository, including only code files (and essential context files like `README.md`, etc.) while excluding non-code assets and directories (e.g., `node_modules`, `.git`, images).
+
+3. **Generate Output File:**  
+   Compiles the folder structure and file contents into a single, well-formatted text file with clear file headers and a summary at the end.
+
+4. **Clean Up:**  
+   Automatically removes the cloned repository once the extraction is complete.
 
 ---
 
 ## 🧠 Integrating with AI Tools
 
-Once you have your consolidated file, you can utilize AI tools to:
-
-- 🤖 **Explain the Codebase:** Get simplified explanations of complex code.
-- 🛠️ **Identify Key Components:** Highlight essential parts of the project.
-- 🚀 **Suggest Optimizations:** Receive recommendations for performance improvements.
-
-Providing AI models with structured input enhances the quality of insights and suggestions.
+Once you have your consolidated file, feed it into your AI tool of choice to:
+- 🤖 **Explain the Codebase:** Obtain simplified explanations of complex projects.
+- 🛠️ **Highlight Key Components:** Identify the most critical parts of your code.
+- 🚀 **Suggest Optimizations:** Receive actionable recommendations for performance improvements.
 
 ---
 
 ## 📩 Need Assistance?
 
-If you encounter any issues or have suggestions, please **open an issue** on our [GitHub repository](https://github.com/Test7973/code-extractor/). We value your feedback and are here to help you maximize the benefits of Code Extractor.
+For any issues or suggestions, please open an issue on our [GitHub repository](https://github.com/Test7973/code-extractor/). We value your feedback and are committed to continuously improving Code Extractor.
 
 ---
 
