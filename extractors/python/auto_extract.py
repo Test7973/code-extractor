@@ -25,7 +25,7 @@ class AutoRepoExtractor:
         
         # Directories to exclude
         self.exclude_dirs = [
-            "node_modules", "venv", "env", ".env", ".venv", "dist", "build", "target",
+            "node_modules", "LICENSE", "venv", "env", ".env", ".venv", "dist", "build", "target",
             ".git", "__pycache__", ".idea", ".vscode", "bin", "obj", "out", "coverage",
             "vendor", "deps", "third_party", "assets", "images", "img", "videos", 
             "fonts", "logs", "tmp", "temp"
