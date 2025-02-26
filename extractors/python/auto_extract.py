@@ -14,7 +14,7 @@ class AutoRepoExtractor:
         
         # File patterns to include (code files)
         self.include_patterns = [
-            "*.py", "*.js", "*.jsx", "*.ts", "*.tsx", "*.java", "*.c", "*.cpp", "*.h", 
+            "*.py", "*.js", "*.jsx", "*.cshtml" , "*.ts", "*.tsx", "*.java", "*.c", "*.cpp", "*.h", 
             "*.hpp", "*.cs", "*.go", "*.rb", "*.php", "*.swift", "*.kt", "*.rs", 
             "*.dart", "*.scala", "*.html", "*.css", "*.scss", "*.sql", "*.sh", 
             "*.json", "*.yaml", "*.yml", "*.toml", "*.xml", "Dockerfile", "Makefile"
