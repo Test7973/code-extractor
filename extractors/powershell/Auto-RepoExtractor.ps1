@@ -152,10 +152,10 @@ class RepoExtractor {
             Add-Content -Path $this.OutputFile -Value $content -NoNewline -Encoding UTF8
         } catch {
             if ($_.Exception.Message -like "*Cannot process because the file contains a character that is invalid*") {
-                Write-Host "Warning: Could not read $relativePath as text file" -ForegroundColor Yellow
+                Write-Host "Warning: Could not read $($relativePath) as text file" -ForegroundColor Yellow
                 Add-Content -Path $this.OutputFile -Value "[Binary file - content not included]" -Encoding UTF8
             } else {
-                Write-Host "Error reading $relativePath: $($_.Exception.Message)" -ForegroundColor Red
+                Write-Host "Error reading $($relativePath): $($_.Exception.Message)" -ForegroundColor Red
                 Add-Content -Path $this.OutputFile -Value "[Error reading file: $($_.Exception.Message)]" -Encoding UTF8
             }
         }
@@ -178,12 +178,12 @@ class RepoExtractor {
             foreach ($item in $items) {
                 if ($item.PSIsContainer) {
                     if ($this.ShouldIncludeDir($item.FullName)) {
-                        $structure += "  " * $indent + "📁 $($item.Name)/"
+                        $structure += ("  " * $indent) + "📁 $($item.Name)/"
                         Process-Dir -path $item.FullName -indent ($indent + 1)
                     }
                 } else {
                     if ($this.ShouldIncludeFile($item.FullName)) {
-                        $structure += "  " * $indent + "📄 $($item.Name)"
+                        $structure += ("  " * $indent) + "📄 $($item.Name)"
                     }
                 }
             }
